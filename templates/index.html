@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Campus Lost &amp; Found System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">Campus Item Recovery Platform</div>
+            <nav class="top-links" aria-label="Primary navigation">
+                <button class="top-link" type="button" data-target="hero-section">Home</button>
+                <button class="top-link" type="button" data-target="report-section">Report</button>
+                <button class="top-link" type="button" data-target="lost-section">Items</button>
+                <button class="top-link" type="button" data-target="match-section">Matches</button>
+                <a class="top-link logout-link" href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+
+        <header id="hero-section" class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Campus Item Recovery System</p>
+                <h1>Find What You've Lost</h1>
+                <p class="hero-text">
+                    Smart AI matching helps students report, search, and reconnect campus items in one clean system.
+                </p>
+                <p class="hero-subtitle">Smart &bull; Fast &bull; Reliable</p>
+                <button id="reportButton" class="hero-cta" type="button">Report Item</button>
+            </div>
+            <div class="hero-image-panel">
+                <div class="hero-feature-card">
+                    <p class="feature-kicker">Recover Faster</p>
+                    <h2>AI-Based Campus Lost &amp; Found System</h2>
+                    <p>
+                        Use the platform to report lost items, register found belongings, and review suggested matches with confidence.
+                    </p>
+                    <div class="hero-stat-pill">
+                        <span class="hero-stat-number">100+</span>
+                        <span>items tracked</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="notificationBox" class="notification-box" aria-live="polite"></div>
+
+        <main id="report-section" class="dashboard">
+            <section class="panel forms-panel">
+                <div class="section-heading">
+                    <h2>Add Lost Item</h2>
+                    <p>Submit details for a missing belonging. Image is optional.</p>
+                </div>
+                <form id="lostForm" class="item-form">
+                    <input type="text" name="name" placeholder="Item name" required>
+                    <textarea name="description" placeholder="Description" required></textarea>
+                    <input type="text" name="location" placeholder="Last seen location" required>
+                    <input type="tel" name="phone" placeholder="Phone number (5 to 10 digits)" minlength="5" maxlength="10" inputmode="numeric" required>
+                    <input type="file" name="image" accept="image/*">
+                    <button type="submit" class="btn btn-lost">Add Lost Item</button>
+                </form>
+            </section>
+
+            <section class="panel forms-panel">
+                <div class="section-heading">
+                    <h2>Add Found Item</h2>
+                    <p>Record an item that has been discovered on campus. Image is required.</p>
+                </div>
+                <form id="foundForm" class="item-form">
+                    <input type="text" name="name" placeholder="Item name" required>
+                    <textarea name="description" placeholder="Description" required></textarea>
+                    <input type="text" name="location" placeholder="Found location" required>
+                    <input type="tel" name="phone" placeholder="Phone number (5 to 10 digits)" minlength="5" maxlength="10" inputmode="numeric" required>
+                    <input type="file" name="image" accept="image/*" required>
+                    <button type="submit" class="btn btn-found">Add Found Item</button>
+                </form>
+            </section>
+
+            <section class="panel search-panel">
+                <div class="section-heading">
+                    <h2>View Items</h2>
+                    <p>Search by name, description, or location.</p>
+                </div>
+                <div class="search-bar">
+                    <input id="searchInput" type="text" placeholder="Search items...">
+                    <button id="searchButton" class="btn btn-search" type="button">Search</button>
+                    <button id="clearButton" class="btn btn-clear" type="button">Clear</button>
+                </div>
+                <div id="messageBox" class="message-box" aria-live="polite"></div>
+            </section>
+
+            <section id="lost-section" class="panel list-panel">
+                <div class="section-heading">
+                    <h2>Lost Items</h2>
+                    <p>All currently reported lost items.</p>
+                </div>
+                <div id="lostItems" class="card-grid"></div>
+            </section>
+
+            <section id="found-section" class="panel list-panel">
+                <div class="section-heading">
+                    <h2>Found Items</h2>
+                    <p>All currently reported found items.</p>
+                </div>
+                <div id="foundItems" class="card-grid"></div>
+            </section>
+
+            <section id="match-section" class="panel matches-panel">
+                <div class="section-heading">
+                    <h2>Matched Results</h2>
+                    <p>Potential matches identified using keyword overlap.</p>
+                </div>
+                <div id="matchResults" class="match-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
